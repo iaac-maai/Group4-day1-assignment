@@ -1,0 +1,24 @@
+# virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+__pycache__/
+
+# data and outputs
+# We KEEP our dataset in git, because the notebook reads it from data/
+# (it does not download it). Files the notebook creates again are ignored.
+data/*
+!data/.gitkeep
+!data/anon2026_50k.csv
+*.xlsx
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# secrets
+.env
+kaggle.json

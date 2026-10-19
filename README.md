@@ -42,11 +42,6 @@ The following structure reflects the folders and files visible in the VS Code pr
 
 ```text
 Group4-day1-assignment/
-├── .gitignore
-├── LICENSE
-├── README.md
-├── requirements.txt
-├── uk_energy_consumption_eda.ipynb
 ├── data/
 │   ├── .gitkeep
 │   └── anon2026_50k.csv
@@ -63,10 +58,13 @@ Group4-day1-assignment/
 │   ├── gas_consumption_distribution_2024.png
 │   ├── gas_vs_electricity_consumption_trends.png
 │   └── property_type_distribution.png
-└── notebook/
+├── notebook/
+│   └── uk_energy_consumption_eda.ipynb
+├── .gitignore
+├── LICENSE
+├── README.md
+└── requirements.txt
 ```
-
-**Notes:** The `notebook/` directory is visible in VS Code, but its contents have not been verified. The local `.venv/` virtual environment is intentionally omitted because it is not normally tracked in Git. Running the notebook creates `data/anon2026_50k_cleaned.csv`; it should be added to this tree only if that output is saved and included in the repository. The structure above is based on the supplied VS Code view, not a fresh listing of the live GitHub repository.
 
 ## 5. Tools and Libraries
 
@@ -74,8 +72,6 @@ Group4-day1-assignment/
 - `pandas` and `numpy` for data processing
 - `matplotlib` and `seaborn` for visualizations
 - `pathlib` for file paths
-
-The notebook also imports `zipfile` and `urllib.request.urlretrieve`, although its executed data-loading step reads a local CSV.
 
 ## 6. How to Run
 
@@ -89,8 +85,6 @@ The notebook also imports `zipfile` and `urllib.request.urlretrieve`, although i
 ```bash
 python -m pip install -r requirements.txt
 ```
-
-**Important:** Run from the repository root because the notebook uses relative `data/` and `figures/` paths.
 
 ## 7. Data Quality Checks and Cleaning
 

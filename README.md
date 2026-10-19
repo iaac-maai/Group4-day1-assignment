@@ -50,15 +50,24 @@ Group4-day1-assignment/
 │   ├── .gitkeep
 │   └── anon2026_50k.csv
 ├── figures/
-│   ├── average_energy_by_building_type.png
-│   ├── epc_distribution.png
-│   ├── average_annual_gas_consumption.png
 │   ├── average_annual_electricity_consumption.png
-│   └── gas_vs_electricity_consumption_trends.png
-├── uk_energy_consumption_eda.ipynb
-├── requirements.txt
+│   ├── average_annual_gas_consumption.png
+│   ├── average_energy_by_building_type.png
+│   ├── correlation_heatmap_2024.png
+│   ├── electricity_consumption_distribution_2024.png
+│   ├── epc_distribution.png
+│   ├── gas_consumption_by_floor_area.png
+│   ├── gas_consumption_by_property_age.png
+│   ├── gas_consumption_by_property_type.png
+│   ├── gas_consumption_distribution_2024.png
+│   ├── gas_vs_electricity_consumption_trends.png
+│   └── property_type_distribution.png
+├── notebook/
+│   └── uk_energy_consumption_eda.ipynb
 ├── .gitignore
-└── README.md
+├── LICENSE
+├── README.md
+└── requirements.txt
 
 ## 7. How to run
 

@@ -1,6 +1,4 @@
-# Group 4 — Data Cleaning and Exploratory Data Analysis
-
-**Repository:** `iaac-maai/Group4-day1-assignment`
+# Group 4 — Residential Gas and Electricity Consumption: Data Cleaning and EDA
 
 ## Team Members
 
@@ -9,281 +7,240 @@
 - Daria
 - Luis
 
----
+## 1. Project Overview and Use Case
 
-## 1. Use Case
+This project investigates residential building characteristics and annual gas and electricity consumption in a sample of domestic properties in **England and Wales**. It cleans a property-level dataset, evaluates missing data and validation flags, and explores how property type, age and floor area relate to energy demand. The notebook is an exploratory analysis, not a causal study or a trained prediction model.
 
-This project investigates residential building energy performance and consumption using the UK's National Energy Efficiency Data-Framework (NEED).
+## 2. Research Questions
 
-The aim is to understand the quality of property-level energy data, explore relationships between building characteristics and energy demand, and communicate findings through descriptive statistics and visualisations.
-
-The exploratory analysis focuses on:
-
-- Energy Performance Certificate (EPC) distributions.
-- Historical gas consumption patterns.
-- Historical electricity consumption patterns.
-- Energy consumption differences across property types.
-- Relationships between gas and electricity consumption.
-
-The cleaned dataset and analytical findings provide a foundation for future predictive modelling of residential building energy performance.
-
-## 2. Project Overview
-
-This project focuses on data cleaning, preprocessing and Exploratory Data Analysis (EDA) using Python.
-
-The workflow includes:
-
-1. Loading and inspecting the original dataset.
-2. Identifying missing values and duplicate records.
-3. Checking data types and data consistency.
-4. Investigating potential outliers.
-5. Preparing data for analysis.
-6. Performing descriptive and statistical analysis.
-7. Generating visualisations to communicate energy consumption patterns.
-8. Documenting findings and limitations.
+1. How are property types and Energy Performance Certificate (EPC) categories distributed in the sample?
+2. How did average annual gas and electricity consumption change between 2005 and 2024?
+3. How does 2024 gas consumption differ by property type, property age and floor-area band?
+4. What correlations exist among building characteristics, gas consumption and electricity consumption?
+5. What data-quality limitations should be considered before modelling energy demand?
 
 ## 3. Dataset
 
-The project uses the **National Energy Efficiency Data-Framework (NEED): Anonymised Data 2026**, published by the UK Department for Energy Security and Net Zero (DESNZ).
+- **Input:** `data/anon2026_50k.csv`
+- **Unit of observation:** one sampled domestic property
+- **Original size:** 50,000 rows × 96 columns
+- **After exact duplicate removal:** 49,998 rows × 96 columns
+- **Geographic scope:** England and Wales, as described in the notebook
+- **Time coverage:** annual gas and electricity consumption for 2005–2024
 
-| Attribute | Description |
+Selected fields include:
+
+| Field(s) | Meaning / use |
 |---|---|
-| Dataset name | National Energy Efficiency Data-Framework (NEED): Anonymised Data 2026 |
-| Publisher | Department for Energy Security and Net Zero (DESNZ) |
-| Geographic coverage | England and Wales |
-| Unit of observation | Individual residential properties |
-| Original sample size | 50,000 rows |
-| Number of columns | 96 |
-| Temporal coverage | 2005–2024 |
-| Main variables | Gas consumption, electricity consumption, EPC ratings, property characteristics and energy-efficiency measures |
-| File format | CSV |
+| `PROP_TYPE` | Residential property type |
+| `PROP_AGE_BAND` | Property construction-age category |
+| `FLOOR_AREA_BAND` | Floor-area category |
+| `EPC` | Recorded EPC category, including `No EPC` |
+| `Gcons2005`–`Gcons2024` | Annual gas consumption (kWh) |
+| `Econs2005`–`Econs2024` | Annual electricity consumption (kWh) |
+| `LI_FLAG`, `CWI_FLAG`, `PV_FLAG` | Loft insulation, cavity wall insulation and solar PV installation indicators |
+| `LI_DATE`, `CWI_DATE`, `PV_DATE` | Corresponding installation dates, where applicable |
+| `IMD_BAND_ENG`, `IMD_BAND_WALES` | Country-specific deprivation bands |
+| `GasValFlag*`, `ElecValFlag*` | Consumption-data validation flags |
 
-**Original dataset:** National Energy Efficiency Data-Framework (NEED), 2026 release.
+## 4. Repository Structure
 
-The dataset contains anonymised property-level information, including energy consumption, building characteristics and energy-efficiency measures.
-
-### Dataset Licensing
-
-The original dataset is published under the UK Open Government Licence (OGL).
-
-Users should consult the original publication and licence terms for attribution requirements.
-
-## 4. Dataset Access and Storage
-
-The original dataset is not committed to this GitHub repository.
-
-To reproduce the analysis:
-
-1. Obtain the 50,000-row anonymised NEED 2026 dataset from its official source.
-2. Place the downloaded CSV file inside the project's `data/` directory.
-3. Ensure the filename is:
-
-`anon2026_50k.csv`
-
-The expected local structure is:
-
-```text
-data/
-├── .gitkeep
-└── anon2026_50k.csv
-```
-
-The original and cleaned datasets are excluded from version control to avoid committing large data files.
-
-## 5. Research Questions
-
-The exploratory analysis investigates the following questions:
-
-1. How are EPC ratings distributed across the properties in the dataset, and how do they relate to energy consumption where comparable observations are available?
-
-2. How has average annual gas consumption changed between 2005 and 2024?
-
-3. How has average annual electricity consumption changed between 2005 and 2024?
-
-4. What relationships exist between gas and electricity consumption across the available observation period?
-
-5. How does energy consumption vary across different residential building types?
-
-These questions are investigated using descriptive statistics, grouped comparisons, correlation analysis and visualisations.
-
-## 6. Project Structure
+The following structure reflects the folders and files visible in the VS Code project. The cleaned CSV is an output generated by the notebook and is not shown as an existing repository file.
 
 ```text
 Group4-day1-assignment/
-│
 ├── data/
-│   └── .gitkeep
-│
+│   ├── .gitkeep
+│   └── anon2026_50k.csv
 ├── figures/
-│   ├── average_energy_by_building_type.png
-│   ├── epc_distribution.png
-│   ├── average_annual_gas_consumption.png
 │   ├── average_annual_electricity_consumption.png
-│   └── gas_vs_electricity_consumption_trends.png
-│
+│   ├── average_annual_gas_consumption.png
+│   ├── average_energy_by_building_type.png
+│   ├── correlation_heatmap_2024.png
+│   ├── electricity_consumption_distribution_2024.png
+│   ├── epc_distribution.png
+│   ├── gas_consumption_by_floor_area.png
+│   ├── gas_consumption_by_property_age.png
+│   ├── gas_consumption_by_property_type.png
+│   ├── gas_consumption_distribution_2024.png
+│   ├── gas_vs_electricity_consumption_trends.png
+│   └── property_type_distribution.png
 ├── notebook/
 │   └── uk_energy_consumption_eda.ipynb
-│
+├── .gitignore
 ├── LICENSE
 ├── README.md
-├── requirements.txt
-└── .gitignore
+└── requirements.txt
 ```
 
-**Note:** The original and cleaned CSV files are stored locally and are not tracked by Git.
+## 5. Tools and Libraries
 
-## 7. Installation and How to Run
+- Python and Jupyter Notebook (run in VS Code or another Jupyter environment)
+- `pandas` and `numpy` for data processing
+- `matplotlib` and `seaborn` for visualizations
+- `pathlib` for file paths
 
-### Prerequisites
+## 6. How to Run
 
-- Python 3.10 or later.
-- Jupyter Notebook.
-- Visual Studio Code or another compatible notebook environment.
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/iaac-maai/Group4-day1-assignment.git
-
-cd Group4-day1-assignment
-```
-
-### Step 2: Create a Virtual Environment
-
-```bash
-python -m venv .venv
-```
-
-### Step 3: Activate the Environment
-
-**Windows PowerShell:**
-
-```powershell
-.venv\Scripts\Activate.ps1
-```
-
-**macOS/Linux:**
-
-```bash
-source .venv/bin/activate
-```
-
-### Step 4: Install Dependencies
+1. Clone or download the repository and open its root folder in VS Code.
+2. Create and activate a Python virtual environment, if needed.
+3. Install dependencies from `requirements.txt` (ensure the packages used by the notebook are included).
+4. Ensure the input file exists at `data/anon2026_50k.csv`.
+5. Open `uk_energy_consumption_eda.ipynb`, select a Python kernel with the required packages and run the cells in order.
+6. The notebook writes its cleaned dataset to `data/anon2026_50k_cleaned.csv` and saves graphs in `figures/`.
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-### Step 5: Add the Dataset
+## 7. Data Quality Checks and Cleaning
 
-Download the original anonymised NEED dataset and place it inside:
+The notebook copies the source DataFrame, checks duplicate records, examines missing values, validates categories and consumption ranges, and exports the cleaned result. It does **not** globally remove missing values or impute all fields.
 
-```text
-data/anon2026_50k.csv
-```
+| Quality check | Observed result | Action / justification |
+|---|---|---|
+| Duplicate rows | 50,000 original rows; 49,998 remaining | Removed **2 exact duplicate rows** with `drop_duplicates()`; verified 0 remain. The four rows shown by `duplicated(keep=False)` include original and repeated occurrences. |
+| Missing values | **809,894 missing cells (16.87%)**; 86 of 96 columns have missing values | Retained missing data rather than indiscriminately dropping rows or imputing values. Interpretation depends on each field. |
+| Data types | **46 `float64`, 44 `str`, 6 `int64`** columns in the executed environment | Inspected column types and categorical codes. No blanket conversion of all columns is documented. |
+| Outliers and range checks | **0 negative values** across annual gas and electricity consumption columns; gas observed approximately 1,000–50,000 kWh, electricity approximately 500–25,000 kWh | Reviewed summary statistics and validation flags. No general outlier-removal procedure is documented; reporting thresholds limit observed ranges. |
+| Feature engineering | **No new persistent columns** added to the cleaned 96-column dataset | Derived grouped statistics, indices and temporary analysis series for visualizations without changing the exported dataset schema. |
 
-### Step 6: Run the Notebook
+### Missingness and installation indicators
 
-Open:
+- `PV_DATE`: 49,198 missing (98.40%).
+- `IMD_BAND_WALES`: 47,576 missing (95.16%); the Wales deprivation index is country-specific.
+- `CWI_DATE`: 42,834 missing (85.67%).
+- `LI_DATE`: 42,818 missing (85.64%).
+- `CONSERVATORY_FLAG`: 40,461 missing (80.93%).
 
-`notebook/uk_energy_consumption_eda.ipynb`
+The notebook's cross-tabulations show that installation dates are present for properties with their corresponding installation flag set to 1 and absent when the flag is 0. These absences should not automatically be treated as errors.
 
-in Jupyter through Visual Studio Code.
+**Cleaned output:** `data/anon2026_50k_cleaned.csv` (49,998 rows × 96 columns). The notebook re-reads this export to verify its dimensions.
 
-Select the `.venv` Python kernel and execute:
+## 8. Exploratory Data Analysis — Visualizations
 
-**Restart Kernel → Run All**
+The following figures are presented in the same order as their filenames in the `figures/` folder. They are generated by the executed notebook.
 
-The notebook performs the data-cleaning and exploratory analysis workflow and generates the corresponding visualisations.
+### 1. Average Annual Electricity Consumption
 
-## 8. Data Cleaning and Preprocessing
+The annual mean electricity consumption series for 2005–2024 shows an overall decline, from approximately **4,579 kWh** in 2005 to **3,339 kWh** in 2024. Year-to-year variation remains.
 
-The data-cleaning workflow focuses on improving data quality and preparing the dataset for exploratory analysis.
+![Average Annual Electricity Consumption](figures/average_annual_electricity_consumption.png)
 
-The following checks and operations are included:
+### 2. Average Annual Gas Consumption
 
-| Quality Check | Description |
-|---|---|
-| Duplicate records | Identification and examination of duplicate observations. |
-| Missing values | Inspection of missing values across relevant variables. |
-| Data types | Verification and correction of inconsistent data types where necessary. |
-| Outliers | Investigation of unusually high or low energy consumption values. |
-| Data consistency | Checking the consistency of property characteristics and energy consumption variables. |
-| Feature preparation | Selection and preparation of relevant variables for exploratory analysis. |
+Average annual gas consumption decreases overall from approximately **18,465 kWh** in 2005 to **11,209 kWh** in 2024, with some fluctuations.
 
-Cleaning decisions are documented in the Jupyter notebook, including the reasoning behind data transformations and exclusions.
+![Average Annual Gas Consumption](figures/average_annual_gas_consumption.png)
 
-### Cleaned Dataset
+### 3. Average Energy Consumption by Building Type
 
-The processed dataset is exported locally as:
-
-`data/anon2026_50k_cleaned.csv`
-
-The cleaned dataset is not committed to the repository.
-
-## 9. Exploratory Data Analysis
-
-The exploratory analysis uses descriptive statistics, distributions, grouped comparisons, historical trends and correlation analysis.
-
-The following visualisations are generated and included in the repository.
-
-### 9.1 Annual Electricity Consumption Trends (2005–2024)
-
-This visualisation examines changes in average annual electricity consumption across the available observation period.
-
-![Annual Electricity Consumption Trends](figures/average_annual_electricity_consumption.png)
-
-### 9.2 Annual Gas Consumption Trends (2005–2024)
-
-This visualisation examines changes in average annual gas consumption and provides insight into historical residential gas demand.
-
-![Annual Gas Consumption Trends](figures/average_annual_gas_consumption.png)
-
-### 9.3 Energy Consumption by Building Type
-
-This comparison explores differences in energy consumption across residential building types.
+This figure compares **mean electricity consumption in 2024** across property types. Despite the filename's general wording, the notebook's code specifically uses `Econs2024`.
 
 ![Average Energy Consumption by Building Type](figures/average_energy_by_building_type.png)
 
-### 9.4 EPC Rating Distribution
+### 4. Correlation Heatmap (2024)
 
-This visualisation examines the distribution of Energy Performance Certificate ratings across the properties in the dataset.
+The correlation heatmap compares selected building characteristics and 2024 consumption measures. Floor-area band correlates positively with gas consumption (**r = 0.46**) and electricity consumption (**r = 0.23**); gas and electricity consumption correlate at **r = 0.32**. These are associations, not proof of causation.
+
+![Correlation Heatmap 2024](figures/correlation_heatmap_2024.png)
+
+### 5. Electricity Consumption Distribution (2024)
+
+The distribution of `Econs2024` is right-skewed, with most observations at lower consumption levels and fewer properties with high values.
+
+![Electricity Consumption Distribution 2024](figures/electricity_consumption_distribution_2024.png)
+
+### 6. EPC Distribution
+
+The recorded categories are **No EPC: 30.17%**, **D: 26.03%**, **C: 24.82%**, **A/B: 10.58%**, **E: 7.13%**, and **F/G: 1.27%**. The combined A/B and F/G groups follow the notebook's categories.
 
 ![EPC Distribution](figures/epc_distribution.png)
 
-### 9.5 Gas vs Electricity Consumption Trends
+### 7. Gas Consumption by Floor Area
 
-This visualisation compares historical gas and electricity consumption trends using an indexed baseline of 2005 = 100, where the required observations are available.
+Median gas consumption increases across floor-area bands, from approximately **5,500 kWh** for properties of 50 m² or less to **23,000 kWh** for those above 200 m².
+
+![Gas Consumption by Floor Area](figures/gas_consumption_by_floor_area.png)
+
+### 8. Gas Consumption by Property Age
+
+Median gas consumption generally declines from older to newer property-age groups: approximately **11,000 kWh** for pre-1930 properties versus **7,900 kWh** for properties built in 2000 or later.
+
+![Gas Consumption by Property Age](figures/gas_consumption_by_property_age.png)
+
+### 9. Gas Consumption by Property Type
+
+Detached properties have the highest 2024 median annual gas consumption (**13,700 kWh**), while flats have the lowest (**6,200 kWh**). Building size and other characteristics may contribute to the difference.
+
+![Gas Consumption by Property Type](figures/gas_consumption_by_property_type.png)
+
+### 10. Gas Consumption Distribution (2024)
+
+The 2024 gas-consumption distribution is right-skewed, indicating that fewer properties have relatively high recorded consumption.
+
+![Gas Consumption Distribution 2024](figures/gas_consumption_distribution_2024.png)
+
+### 11. Gas vs. Electricity Consumption Trends (2005–2024)
+
+The two series are indexed to **2005 = 100**, enabling comparison of proportional change despite different absolute consumption levels. Both decline overall during the period.
 
 ![Gas vs Electricity Consumption Trends](figures/gas_vs_electricity_consumption_trends.png)
 
-## 10. Key Findings
+### 12. Property Type Distribution
 
-The notebook presents the quantitative results of the exploratory analysis.
+This figure summarizes the representation of six property types. The notebook identifies semi-detached properties as the most represented group.
 
-The main areas investigated include:
+![Property Type Distribution](figures/property_type_distribution.png)
 
-- **EPC performance:** Distribution of energy performance ratings across residential properties.
-- **Gas consumption:** Changes in average annual gas consumption over the observation period.
-- **Electricity consumption:** Changes in average annual electricity consumption.
-- **Building characteristics:** Differences in energy consumption across property types.
-- **Energy relationships:** Associations between gas and electricity consumption.
+## 9. Key Findings
 
-Numerical findings and supporting interpretations should be taken from the executed notebook and its corresponding analytical outputs.
+1. **Gas consumption declined:** Average annual gas consumption fell from **18,465.19 kWh (2005)** to **11,208.82 kWh (2024)**, a reduction of approximately **39.3%** in the observed annual means.
+2. **Electricity consumption declined:** Average annual electricity consumption fell from **4,578.83 kWh (2005)** to **3,338.70 kWh (2024)**, a reduction of approximately **27.1%**.
+3. **EPC coverage is incomplete:** **30.17%** of sampled properties have `No EPC`; among the full sample, D (**26.03%**) and C (**24.82%**) are the most common recorded categories.
+4. **Building form and size matter:** Detached properties have a median gas consumption of **13,700 kWh**, compared with **6,200 kWh** for flats. Median gas use increases substantially with floor-area band.
+5. **Correlations are moderate or weaker:** Floor-area band and gas consumption correlate at **r = 0.46**, while gas and electricity consumption correlate at **r = 0.32**.
+6. **Cleaning preserves coverage:** Only **2 exact duplicates** were removed; **49,998 records** remain, while documented missingness and validation flags were retained for appropriate interpretation.
 
-## 11. Limitations and Potential Biases
+## 10. Limitations and Biases
 
-The analysis has several limitations that should be considered when interpreting the results:
+- **Missing information:** 809,894 cells (16.87%) are missing; analysis-specific sample sizes may vary depending on which variables are present.
+- **Consumption thresholds and flags:** The notebook notes suppression of gas consumption below 1,000 kWh or above 50,000 kWh and electricity consumption below 500 kWh or above 25,000 kWh. Recorded distributions therefore exclude some extremes of actual consumption.
+- **Sampling and geography:** This is a prepared sample of domestic properties in England and Wales, not a census of every property. Findings should not automatically be generalized to other regions or the full housing stock.
+- **EPC and observed consumption differ:** EPC describes assessed building performance, while measured consumption also reflects occupancy, behavior and operating conditions.
+- **Unobserved factors:** Occupancy, weather, heating preferences, insulation details and other characteristics may influence consumption. Associations in plots and correlations do not establish causes.
+- **Historical comparison:** Different years may have different available consumption observations. Changes in sample composition, energy prices, weather and reporting practices can affect trends.
+- **Outlier handling:** The notebook checks negative values and observed ranges but does not document a general statistical outlier-removal process.
 
-- The anonymised dataset represents a sample rather than the complete population of residential properties.
-- Geographic coverage is limited to England and Wales.
-- Missing values and differences in data availability may affect the results of individual analyses.
-- EPC ratings and measured energy consumption represent related but different aspects of building energy performance.
-- Changes in energy consumption may also be influenced by weather conditions, energy prices, occupancy patterns and household behaviour.
-- Observed correlations and historical trends do not establish causal relationships.
-- Historical consumption patterns should not automatically be interpreted as indicators of future energy demand.
+## 11. Future Work — Predictive Modelling
 
-## 12. Licence
+The notebook outlines two possible regression tasks but **does not train or evaluate prediction models**:
+
+- **Gas prediction:** target `Gcons2024`.
+- **Electricity prediction:** target `Econs2024`.
+
+Candidate predictors include property type, age and floor-area bands, EPC category, region, council-tax band, deprivation indicators and insulation/solar installation flags. Future work should include missing-data strategies, categorical encoding, validation-aware filtering, train/test splitting and model evaluation.
+
+## 12. AI Usage Disclosure
+
+| Category | Disclosure |
+|---|---|
+| **Tools** | ChatGPT (conversational AI assistant). Used through chat interactions. No autonomous AI agents were used to edit repository files or execute the project workflow. |
+| **Why** | To support learning Python data analysis, troubleshoot programming issues, understand Pandas operations, improve data visualisation and assist with Git/GitHub workflows and project documentation. |
+| **Where** | Data-cleaning and preprocessing workflow, exploratory data analysis, visualisation development, notebook documentation, README preparation and Git/GitHub troubleshooting. |
+| **How** | Conversational prompts were used to request explanations, code examples and debugging suggestions. For example: "How can I identify missing values, duplicate records and inconsistent data types in this dataset using Pandas?" Suggestions were reviewed, adapted and tested against the actual dataset. Generated code was checked through execution, inspection of outputs and verification of visualisations. Suggestions that did not fit the dataset structure or project requirements were modified or rejected. |
+
+### Lessons Learned
+
+ChatGPT was useful for understanding unfamiliar Python operations, troubleshooting programming errors and exploring alternative approaches to data analysis.
+
+However, some suggestions required modification to match the actual dataset structure, available variables and project requirements.
+
+We learned that AI-generated code and explanations should not be accepted without verification. In future projects, we would provide more precise dataset context in our prompts, validate intermediate outputs systematically and document important analytical decisions.
+
+The team remains responsible for understanding, validating and defending all code, data-cleaning decisions and analytical interpretations included in this submission.
+
+## 13. Licence
 
 ### Source Code and Documentation
 
@@ -302,22 +259,3 @@ Users should follow the original publisher's attribution requirements and applic
 **Dataset source:** National Energy Efficiency Data-Framework (NEED), 2026.
 
 **Dataset licence:** Open Government Licence v3.0.
-
-## 13. AI Usage Disclosure
-
-| Category | Disclosure |
-|---|---|
-| **Tools** | ChatGPT (conversational AI assistant). Used through chat interactions. No autonomous AI agents were used to edit repository files or execute the project workflow. |
-| **Why** | To support learning Python data analysis, troubleshoot programming issues, understand Pandas operations, improve data visualisation and assist with Git/GitHub workflows and project documentation. |
-| **Where** | Data-cleaning and preprocessing workflow, exploratory data analysis, visualisation development, notebook documentation, README preparation and Git/GitHub troubleshooting. |
-| **How** | Conversational prompts were used to request explanations, code examples and debugging suggestions. For example: "How can I identify missing values, duplicate records and inconsistent data types in this dataset using Pandas?" Suggestions were reviewed, adapted and tested against the actual dataset. Generated code was checked through execution, inspection of outputs and verification of visualisations. Suggestions that did not fit the dataset structure or project requirements were modified or rejected. |
-
-### Lessons Learned
-
-ChatGPT was useful for understanding unfamiliar Python operations, troubleshooting programming errors and exploring alternative approaches to data analysis.
-
-However, some suggestions required modification to match the actual dataset structure, available variables and project requirements.
-
-We learned that AI-generated code and explanations should not be accepted without verification. In future projects, we would provide more precise dataset context in our prompts, validate intermediate outputs systematically and document important analytical decisions.
-
-The team remains responsible for understanding, validating and defending all code, data-cleaning decisions and analytical interpretations included in this submission.

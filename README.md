@@ -28,6 +28,18 @@ This project investigates residential building characteristics and annual gas an
 - **Geographic scope:** England and Wales, as described in the notebook
 - **Time coverage:** annual gas and electricity consumption for 2005–2024
 
+### Dataset
+
+The National Energy Efficiency Data-Framework (NEED) anonymised dataset is published by the UK Department for Energy Security and Net Zero.
+
+The dataset is distributed under the **Open Government Licence v3.0 (OGL v3.0)**.
+
+Users should follow the original publisher's attribution requirements and applicable licence conditions.
+
+**Dataset source:** https://www.gov.uk/government/collections/national-energy-efficiency-data-framework-need
+
+**Dataset licence:** https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+
 Selected fields include:
 
 | Field(s) | Meaning / use |
@@ -248,14 +260,4 @@ The original source code and documentation developed by Group 4 for this project
 
 See the [LICENSE](LICENSE) file for the complete licence terms.
 
-### Dataset
 
-The National Energy Efficiency Data-Framework (NEED) anonymised dataset is published by the UK Department for Energy Security and Net Zero.
-
-The dataset is distributed under the **Open Government Licence v3.0 (OGL v3.0)**.
-
-Users should follow the original publisher's attribution requirements and applicable licence conditions.
-
-**Dataset source:** National Energy Efficiency Data-Framework (NEED), 2026.
-
-**Dataset licence:** Open Government Licence v3.0.

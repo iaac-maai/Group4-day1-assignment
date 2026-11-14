@@ -1,5 +1,12 @@
 # Group 4 — Residential Gas and Electricity Consumption: Data Cleaning and EDA
 
+## Team Members
+
+- Fawad
+- Hetashri
+- Daria
+- Luis
+
 ## 1. Project Overview and Use Case
 
 This project investigates residential building characteristics and annual gas and electricity consumption in a sample of domestic properties in **England and Wales**. It cleans a property-level dataset, evaluates missing data and validation flags, and explores how property type, age and floor area relate to energy demand. The notebook is an exploratory analysis, not a causal study or a trained prediction model.
@@ -216,8 +223,39 @@ Candidate predictors include property type, age and floor-area bands, EPC catego
 
 ## 12. AI Usage Disclosure
 
-**Tool:** ChatGPT (conversational assistance; not an autonomous agent editing the repository in this workflow).
+| Category | Disclosure |
+|---|---|
+| **Tools** | ChatGPT (conversational AI assistant). Used through chat interactions. No autonomous AI agents were used to edit repository files or execute the project workflow. |
+| **Why** | To support learning Python data analysis, troubleshoot programming issues, understand Pandas operations, improve data visualisation and assist with Git/GitHub workflows and project documentation. |
+| **Where** | Data-cleaning and preprocessing workflow, exploratory data analysis, visualisation development, notebook documentation, README preparation and Git/GitHub troubleshooting. |
+| **How** | Conversational prompts were used to request explanations, code examples and debugging suggestions. For example: "How can I identify missing values, duplicate records and inconsistent data types in this dataset using Pandas?" Suggestions were reviewed, adapted and tested against the actual dataset. Generated code was checked through execution, inspection of outputs and verification of visualisations. Suggestions that did not fit the dataset structure or project requirements were modified or rejected. |
 
-**Why:** To understand Python and Git/GitHub workflows, troubleshoot installation and version-control issues.
+### Lessons Learned
 
-**Where:** Assistance was used for learning Pandas, plotting approaches, Git branching and Pull Requests. 
+ChatGPT was useful for understanding unfamiliar Python operations, troubleshooting programming errors and exploring alternative approaches to data analysis.
+
+However, some suggestions required modification to match the actual dataset structure, available variables and project requirements.
+
+We learned that AI-generated code and explanations should not be accepted without verification. In future projects, we would provide more precise dataset context in our prompts, validate intermediate outputs systematically and document important analytical decisions.
+
+The team remains responsible for understanding, validating and defending all code, data-cleaning decisions and analytical interpretations included in this submission.
+
+## 13. Licence
+
+### Source Code and Documentation
+
+The original source code and documentation developed by Group 4 for this project are licensed under the **MIT License**.
+
+See the [LICENSE](LICENSE) file for the complete licence terms.
+
+### Dataset
+
+The National Energy Efficiency Data-Framework (NEED) anonymised dataset is published by the UK Department for Energy Security and Net Zero.
+
+The dataset is distributed under the **Open Government Licence v3.0 (OGL v3.0)**.
+
+Users should follow the original publisher's attribution requirements and applicable licence conditions.
+
+**Dataset source:** National Energy Efficiency Data-Framework (NEED), 2026.
+
+**Dataset licence:** Open Government Licence v3.0.

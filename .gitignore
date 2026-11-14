@@ -9,8 +9,11 @@ env/
 
 # Ignore generated datasets except the project dataset
 data/*
+# Ignore downloaded and generated datasets
+data/*
+
+# Keep the data directory
 !data/.gitkeep
-!data/anon2026_50k.csv
 
 # Credentials
 .env

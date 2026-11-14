@@ -1,172 +1,323 @@
 # Group 4 — Data Cleaning and Exploratory Data Analysis
-**Repository:** [iaac-maai/Group4-day1-assignment](https://github.com/iaac-maai/Group4-day1-assignment)
+
+**Repository:** `iaac-maai/Group4-day1-assignment`
 
 ## Team Members
+
 - Fawad
 - Hetashri
 - Daria
 - Luis
 
-## 1. Use case
+---
 
-This project investigates residential building energy performance and consumption using a built-environment dataset. The aim is to understand the dataset's quality, explore relationships between building characteristics and energy demand, and communicate evidence through descriptive statistics and visualizations. The exploratory analysis focuses on Energy Performance Certificates (EPC) and gas and electricity consumption, including historical trends where suitable data is available. The resulting cleaned dataset is intended to support future predictive modelling.
+## 1. Use Case
+
+This project investigates residential building energy performance and consumption using the UK's National Energy Efficiency Data-Framework (NEED).
+
+The aim is to understand the quality of property-level energy data, explore relationships between building characteristics and energy demand, and communicate findings through descriptive statistics and visualisations.
+
+The exploratory analysis focuses on:
+
+- Energy Performance Certificate (EPC) distributions.
+- Historical gas consumption patterns.
+- Historical electricity consumption patterns.
+- Energy consumption differences across property types.
+- Relationships between gas and electricity consumption.
+
+The cleaned dataset and analytical findings provide a foundation for future predictive modelling of residential building energy performance.
 
 ## 2. Project Overview
 
-This project focuses on cleaning, preprocessing, and performing Exploratory Data Analysis (EDA) on property-level energy consumption data.
+This project focuses on data cleaning, preprocessing and Exploratory Data Analysis (EDA) using Python.
 
-The analysis explores electricity and gas consumption patterns, Energy Performance Certificate (EPC) distributions, and differences in energy consumption across property types.
+The workflow includes:
+
+1. Loading and inspecting the original dataset.
+2. Identifying missing values and duplicate records.
+3. Checking data types and data consistency.
+4. Investigating potential outliers.
+5. Preparing data for analysis.
+6. Performing descriptive and statistical analysis.
+7. Generating visualisations to communicate energy consumption patterns.
+8. Documenting findings and limitations.
 
 ## 3. Dataset
 
-**Dataset:** 
+The project uses the **National Energy Efficiency Data-Framework (NEED): Anonymised Data 2026**, published by the UK Department for Energy Security and Net Zero (DESNZ).
 
 | Attribute | Description |
 |---|---|
-| Dataset name | National Energy Efficiency Data-Framework (NEED): anonymised data 2026 |
-| Original source | [Department for Energy Security and Net Zero](https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero) |
-| Geographic coverage | UK |
-| Unit of observation | Property-level data containing gas and electricity consumption from 2005 to 2024, property characteristics, and energy-efficiency measure installations. |
-| Raw size | 50,000 rows × 96 columns |
-| Temporal coverage | 2005-2024 |
-| Important fields | Insert exact EPC, gas, electricity and building-characteristic column names |
+| Dataset name | National Energy Efficiency Data-Framework (NEED): Anonymised Data 2026 |
+| Publisher | Department for Energy Security and Net Zero (DESNZ) |
+| Geographic coverage | England and Wales |
+| Unit of observation | Individual residential properties |
+| Original sample size | 50,000 rows |
+| Number of columns | 96 |
+| Temporal coverage | 2005–2024 |
+| Main variables | Gas consumption, electricity consumption, EPC ratings, property characteristics and energy-efficiency measures |
+| File format | CSV |
 
-### 4. Local Dataset
+**Original dataset:** National Energy Efficiency Data-Framework (NEED), 2026 release.
 
-The notebook reads the anonymised dataset from: data/anon2026_50k.csv
+The dataset contains anonymised property-level information, including energy consumption, building characteristics and energy-efficiency measures.
 
-## 5. Research questions
+### Dataset Licensing
 
-1. How are EPC ratings distributed across the properties in the dataset, and how do they relate to energy use where comparable observations exist?
-2. How has gas consumption changed over 2005–2024, **if annual data for that full period is available**?
-3. How has electricity consumption changed over 2005–2024, **if annual data for that full period is available**?
-4. What is the co-relation across different energy ureses over 2005-2024, **if annual data for that full period is available**?
+The original dataset is published under the UK Open Government Licence (OGL).
+
+Users should consult the original publication and licence terms for attribution requirements.
+
+## 4. Dataset Access and Storage
+
+The original dataset is not committed to this GitHub repository.
+
+To reproduce the analysis:
+
+1. Obtain the 50,000-row anonymised NEED 2026 dataset from its official source.
+2. Place the downloaded CSV file inside the project's `data/` directory.
+3. Ensure the filename is:
+
+`anon2026_50k.csv`
+
+The expected local structure is:
+
+```text
+data/
+├── .gitkeep
+└── anon2026_50k.csv
+```
+
+The original and cleaned datasets are excluded from version control to avoid committing large data files.
+
+## 5. Research Questions
+
+The exploratory analysis investigates the following questions:
+
+1. How are EPC ratings distributed across the properties in the dataset, and how do they relate to energy consumption where comparable observations are available?
+
+2. How has average annual gas consumption changed between 2005 and 2024?
+
+3. How has average annual electricity consumption changed between 2005 and 2024?
+
+4. What relationships exist between gas and electricity consumption across the available observation period?
+
+5. How does energy consumption vary across different residential building types?
+
+These questions are investigated using descriptive statistics, grouped comparisons, correlation analysis and visualisations.
 
 ## 6. Project Structure
 
 ```text
 Group4-day1-assignment/
+│
 ├── data/
-│   ├── .gitkeep
-│   └── anon2026_50k.csv
+│   └── .gitkeep
+│
 ├── figures/
 │   ├── average_energy_by_building_type.png
 │   ├── epc_distribution.png
 │   ├── average_annual_gas_consumption.png
 │   ├── average_annual_electricity_consumption.png
 │   └── gas_vs_electricity_consumption_trends.png
-├── uk_energy_consumption_eda.ipynb
+│
+├── notebook/
+│   └── uk_energy_consumption_eda.ipynb
+│
+├── LICENSE
+├── README.md
 ├── requirements.txt
-├── .gitignore
-└── README.md
+└── .gitignore
+```
 
-## 7. How to run
+**Note:** The original and cleaned CSV files are stored locally and are not tracked by Git.
 
-Clone the repository and enter the project folder:
+## 7. Installation and How to Run
+
+### Prerequisites
+
+- Python 3.10 or later.
+- Jupyter Notebook.
+- Visual Studio Code or another compatible notebook environment.
+
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/iaac-maai/Group4-day1-assignment.git
+
 cd Group4-day1-assignment
 ```
 
-Create a virtual environment:
+### Step 2: Create a Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate it on **Windows PowerShell**:
+### Step 3: Activate the Environment
+
+**Windows PowerShell:**
 
 ```powershell
-.\.venv\Scripts\Activate.ps1
+.venv\Scripts\Activate.ps1
 ```
 
-Or on **macOS/Linux**:
+**macOS/Linux:**
 
 ```bash
 source .venv/bin/activate
 ```
 
-Install dependencies:
+### Step 4: Install Dependencies
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-Open `notebook/data_cleaning_and_EDA.ipynb` in Jupyter in VS Code, select the `.venv` Python kernel, then choose **Restart Kernel → Run All**. The notebook should acquire or load its input data and create the cleaned dataset and exported figures using relative paths. **Confirm the actual download method and paths in the final notebook before publishing these instructions.**
+### Step 5: Add the Dataset
 
-## 8. Data quality checks and cleaning
+Download the original anonymised NEED dataset and place it inside:
 
-The cleaning workflow checks for duplicated records, missing values, inconsistent data types and potential outliers. Each change should be documented in the notebook with a reason for the decision.
+```text
+data/anon2026_50k.csv
+```
 
-| Quality check | Observed result | Action / justification |
-|---|---|---|
-| Duplicate rows | [Insert actual number] | [Explain whether records were removed and why] |
-| Missing values | [Insert affected columns and percentages] | [Explain whether values were retained, imputed or excluded] |
-| Data types | [Insert any detected issues] | [Describe conversions, if any] |
-| Outliers | [Insert variables inspected] | [Explain whether extreme values are plausible or erroneous] |
-| Feature engineering | [Insert new variable, if created] | [Explain its built-environment relevance] |
+### Step 6: Run the Notebook
 
-**Cleaned output:** `[insert exact relative path and filename]`.
+Open:
 
-## 9. Exploratory data analysis
+`notebook/uk_energy_consumption_eda.ipynb`
 
-The notebook should contain descriptive statistics, univariate distributions, bivariate comparisons, grouped summaries and correlation analysis. Interpretations must distinguish observed associations from causal relationships.
+in Jupyter through Visual Studio Code.
 
+Select the `.venv` Python kernel and execute:
 
-### Annual Electricity consumption Tread 2005-2024
+**Restart Kernel → Run All**
 
-This visualization shows use of electricity consumption across the housing dataset, helping understand change in consumption amount. 
+The notebook performs the data-cleaning and exploratory analysis workflow and generates the corresponding visualisations.
 
-![Annual_Energy_Consumption_Tread](figures/average_annual_electricity_consumption.png)
+## 8. Data Cleaning and Preprocessing
 
-### Gas consumption trends
+The data-cleaning workflow focuses on improving data quality and preparing the dataset for exploratory analysis.
 
-This graph presents average annual gas consumption, providing insight into gas energy demand across the dataset.
+The following checks and operations are included:
 
-![Average Annual Gas Consumption](figures/average_annual_gas_consumption.png)
+| Quality Check | Description |
+|---|---|
+| Duplicate records | Identification and examination of duplicate observations. |
+| Missing values | Inspection of missing values across relevant variables. |
+| Data types | Verification and correction of inconsistent data types where necessary. |
+| Outliers | Investigation of unusually high or low energy consumption values. |
+| Data consistency | Checking the consistency of property characteristics and energy consumption variables. |
+| Feature preparation | Selection and preparation of relevant variables for exploratory analysis. |
 
-### Energy Consumption by Building Type
+Cleaning decisions are documented in the Jupyter notebook, including the reasoning behind data transformations and exclusions.
 
-This graph compares energy consumption across different building types, helping investigate differences in building energy demand.
+### Cleaned Dataset
 
-![Average Energy Consumption_By_Building_Type](figures/average_energy_by_building_type.png)
+The processed dataset is exported locally as:
 
-### EPC Distribution and Energy Performance
+`data/anon2026_50k_cleaned.csv`
 
-This visualization shows the distribution of Energy Performance Certificate (EPC) ratings across the housing dataset, helping identify the most common energy performance categories.
+The cleaned dataset is not committed to the repository.
 
-![EPC_Distribution](figures/epc_distribution.png)
+## 9. Exploratory Data Analysis
 
-### Gas vs Electricity Consumption Trends (2005–2024)
+The exploratory analysis uses descriptive statistics, distributions, grouped comparisons, historical trends and correlation analysis.
 
-This graph compares gas and electricity consumption trends over time, using an indexed baseline of 2005 = 100.
+The following visualisations are generated and included in the repository.
+
+### 9.1 Annual Electricity Consumption Trends (2005–2024)
+
+This visualisation examines changes in average annual electricity consumption across the available observation period.
+
+![Annual Electricity Consumption Trends](figures/average_annual_electricity_consumption.png)
+
+### 9.2 Annual Gas Consumption Trends (2005–2024)
+
+This visualisation examines changes in average annual gas consumption and provides insight into historical residential gas demand.
+
+![Annual Gas Consumption Trends](figures/average_annual_gas_consumption.png)
+
+### 9.3 Energy Consumption by Building Type
+
+This comparison explores differences in energy consumption across residential building types.
+
+![Average Energy Consumption by Building Type](figures/average_energy_by_building_type.png)
+
+### 9.4 EPC Rating Distribution
+
+This visualisation examines the distribution of Energy Performance Certificate ratings across the properties in the dataset.
+
+![EPC Distribution](figures/epc_distribution.png)
+
+### 9.5 Gas vs Electricity Consumption Trends
+
+This visualisation compares historical gas and electricity consumption trends using an indexed baseline of 2005 = 100, where the required observations are available.
 
 ![Gas vs Electricity Consumption Trends](figures/gas_vs_electricity_consumption_trends.png)
 
+## 10. Key Findings
 
-## 10. Key findings
+The notebook presents the quantitative results of the exploratory analysis.
 
-Replace the placeholders below with **3–6 findings supported by the executed notebook**:
+The main areas investigated include:
 
-- **EPC:** [Most common rating and percentage or count].
-- **Gas:** [Observed change between verified start and end years, with units].
-- **Electricity:** [Observed change between verified start and end years, with units].
-- **Building characteristics:** [One measured group difference or association].
-- **Data quality:** [One quantitative result of cleaning or validation].
+- **EPC performance:** Distribution of energy performance ratings across residential properties.
+- **Gas consumption:** Changes in average annual gas consumption over the observation period.
+- **Electricity consumption:** Changes in average annual electricity consumption.
+- **Building characteristics:** Differences in energy consumption across property types.
+- **Energy relationships:** Associations between gas and electricity consumption.
 
-## 11. Limitations and biases
+Numerical findings and supporting interpretations should be taken from the executed notebook and its corresponding analytical outputs.
 
-- The dataset has few missing data for building types, households or geographical areas; confirm the actual coverage.
-- EPC ratings and measured consumption describe related but different aspects of building energy performance.
-- Changes in energy consumption may also reflect weather, energy prices and occupancy; observed trends alone do not establish causes.
+## 11. Limitations and Potential Biases
 
-## 12. AI usage disclosure
+The analysis has several limitations that should be considered when interpreting the results:
 
-**Tool:** ChatGPT (conversational assistance; not an autonomous agent editing the repository in this workflow).
+- The anonymised dataset represents a sample rather than the complete population of residential properties.
+- Geographic coverage is limited to England and Wales.
+- Missing values and differences in data availability may affect the results of individual analyses.
+- EPC ratings and measured energy consumption represent related but different aspects of building energy performance.
+- Changes in energy consumption may also be influenced by weather conditions, energy prices, occupancy patterns and household behaviour.
+- Observed correlations and historical trends do not establish causal relationships.
+- Historical consumption patterns should not automatically be interpreted as indicators of future energy demand.
 
-**Why:** To understand Python and Git/GitHub workflows, troubleshoot installation and version-control issues.
+## 12. Licence
 
-**Where:** Assistance was used for learning Pandas, plotting approaches, Git branching and Pull Requests. 
+### Source Code and Documentation
 
-**Lessons learned:** AI assistance can accelerate debugging and documentation, but its suggestions must be checked against the actual repository structure, dataset columns and intended notebook outputs.
+The original source code and documentation developed by Group 4 for this project are licensed under the **MIT License**.
+
+See the [LICENSE](LICENSE) file for the complete licence terms.
+
+### Dataset
+
+The National Energy Efficiency Data-Framework (NEED) anonymised dataset is published by the UK Department for Energy Security and Net Zero.
+
+The dataset is distributed under the **Open Government Licence v3.0 (OGL v3.0)**.
+
+Users should follow the original publisher's attribution requirements and applicable licence conditions.
+
+**Dataset source:** National Energy Efficiency Data-Framework (NEED), 2026.
+
+**Dataset licence:** Open Government Licence v3.0.
+
+## 13. AI Usage Disclosure
+
+| Category | Disclosure |
+|---|---|
+| **Tools** | ChatGPT (conversational AI assistant). Used through chat interactions. No autonomous AI agents were used to edit repository files or execute the project workflow. |
+| **Why** | To support learning Python data analysis, troubleshoot programming issues, understand Pandas operations, improve data visualisation and assist with Git/GitHub workflows and project documentation. |
+| **Where** | Data-cleaning and preprocessing workflow, exploratory data analysis, visualisation development, notebook documentation, README preparation and Git/GitHub troubleshooting. |
+| **How** | Conversational prompts were used to request explanations, code examples and debugging suggestions. For example: "How can I identify missing values, duplicate records and inconsistent data types in this dataset using Pandas?" Suggestions were reviewed, adapted and tested against the actual dataset. Generated code was checked through execution, inspection of outputs and verification of visualisations. Suggestions that did not fit the dataset structure or project requirements were modified or rejected. |
+
+### Lessons Learned
+
+ChatGPT was useful for understanding unfamiliar Python operations, troubleshooting programming errors and exploring alternative approaches to data analysis.
+
+However, some suggestions required modification to match the actual dataset structure, available variables and project requirements.
+
+We learned that AI-generated code and explanations should not be accepted without verification. In future projects, we would provide more precise dataset context in our prompts, validate intermediate outputs systematically and document important analytical decisions.
+
+The team remains responsible for understanding, validating and defending all code, data-cleaning decisions and analytical interpretations included in this submission.
